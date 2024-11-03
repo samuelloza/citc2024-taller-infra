@@ -1,0 +1,30 @@
+services:
+  traefik:
+    image: traefik:v3.2
+    command:
+      - --api.insecure=false
+      - --providers.docker
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --certificatesresolvers.le.acme.email=MY-EMAIL@GMAIL.COM
+      - --certificatesresolvers.le.acme.storage=/acme/acme.json
+      - --certificatesresolvers.le.acme.tlschallenge=true
+      - --providers.docker.network=traefik-net
+      - --accesslog
+      - --log
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./acme/:/acme/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - traefik-net
+      - traefik-internal
+networks:
+  traefik-net:
+    external: true
+  traefik-internal:
+    external: false
