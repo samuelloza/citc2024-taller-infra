@@ -4,7 +4,7 @@
 En este taller trabajaremos con la infraestructura representada en los siguientes diagramas:
 
 1. **Diagrama de Desarrollo**: Utilizaremos una configuración de dos servidores, como se muestra a continuación:
-   ![Diagrama de dos servidores](./assets/img/infra-2-servers.png)
+   ![Diagrama de dos servidores](assets/img/infra-2-servers.png)
 
 2. **Diagrama de Flujo Completo**: Este diagrama describe el flujo completo, desde la carga del codigo al repositorio hasta el despliegue en el servidor. Dependiendo de si el código se sube al branch `develop` o `main`, se implementará en el servidor de desarrollo o producción, respectivamente:
    ![Diagrama de flujo completo](./assets/img/all-flow.png)
