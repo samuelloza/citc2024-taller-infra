@@ -1,0 +1,14 @@
+services:
+  front:
+    image: ghcr.io/../node
+    labels:
+        - traefik.enable=true
+        - traefik.http.routers.front-dev.rule=Host(`MY-DOMAIN.COM`)
+        - traefik.http.routers.front-dev.tls=true
+        - traefik.http.routers.front-dev.tls.certresolver=le
+        - traefik.http.services.front-dev.loadbalancer.server.port=80
+    networks:
+        - traefik-net
+networks:
+  traefik-net:
+    external: true
