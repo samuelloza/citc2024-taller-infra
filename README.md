@@ -57,8 +57,8 @@ Para permitir la autenticación mediante SSH en GitHub:
 ## Descripción de los Archivos YAML de Servicios
 
 Los servicios `backend` y `frondend` utilizan las imagenes Docker almacenadas en GitHub Registry
-   [citc2024-taller-back](https://github.com/samuelloza/citc2024-taller-back)  
-   [citc2024-taller-front](https://github.com/samuelloza/citc2024-taller-front)
+   1. [citc2024-taller-back](https://github.com/samuelloza/citc2024-taller-back)  
+   1. [citc2024-taller-front](https://github.com/samuelloza/citc2024-taller-front)
 
 ### Servicio Traefik
 
