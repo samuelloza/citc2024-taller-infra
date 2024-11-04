@@ -56,29 +56,9 @@ Para permitir la autenticación mediante SSH en GitHub:
 
 ## Descripción de los Archivos YAML de Servicios
 
-Este archivo `docker-compose.yml` define `backend`, `traefik` y `frontend`.
-
-
-El servicio `backend` y `frondend` utilizaran las imagenes Docker almacenadas en GitHub Registry
-   ![citc2024-taller-back](https://github.com/samuelloza/citc2024-taller-back)
-   ![citc2024-taller-front](https://github.com/samuelloza/citc2024-taller-front)
-
-### Servicio Backend
-```yaml
-services:
-  backend:
-    image: ghcr.io/samuelloza/citc2024-taller-back:develop
-    restart: always
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.back-dev.rule=Host(`MY-DOMAIN.COM`) && PathPrefix(`/api/v1`)
-      - traefik.http.routers.back-dev.tls=true
-      - traefik.http.routers.back-dev.tls.certresolver=le
-      - traefik.http.services.back-dev.loadbalancer.server.port=4000
-    networks:
-      - traefik-net
-      - traefik-internal
-```
+Los servicios `backend` y `frondend` utilizan las imagenes Docker almacenadas en GitHub Registry
+   [citc2024-taller-back](https://github.com/samuelloza/citc2024-taller-back)
+   [citc2024-taller-front](https://github.com/samuelloza/citc2024-taller-front)
 
 ### Servicio Traefik
 
@@ -107,6 +87,24 @@ services:
     volumes:
       - ./acme/:/acme/
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - traefik-net
+      - traefik-internal
+```
+
+### Servicio Backend
+El servicio `Backend` utiliza la imagen docker del proyecto de backend y enrutarlo a través de la red `traefik-net`.
+```yaml
+services:
+  backend:
+    image: ghcr.io/samuelloza/citc2024-taller-back:develop
+    restart: always
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.back-dev.rule=Host(`MY-DOMAIN.COM`) && PathPrefix(`/api/v1`)
+      - traefik.http.routers.back-dev.tls=true
+      - traefik.http.routers.back-dev.tls.certresolver=le
+      - traefik.http.services.back-dev.loadbalancer.server.port=4000
     networks:
       - traefik-net
       - traefik-internal
