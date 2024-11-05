@@ -1,0 +1,19 @@
+services:
+  backend:
+    image: ghcr.io/..../back
+    restart: always
+    labels:
+        - traefik.enable=true
+        - traefik.http.routers.back-dev.rule=Host(`MY-DOMAIN.COM`) && PathPrefix(`/api/v1`)
+        - traefik.http.routers.back-dev.tls=true
+        - traefik.http.routers.back-dev.tls.certresolver=le
+        - traefik.http.services.back-dev.loadbalancer.server.port=4000
+    networks:
+        - traefik-net
+        - traefik-internal
+
+networks:
+  traefik-net:
+    external: true
+  traefik-internal:
+    external: false
