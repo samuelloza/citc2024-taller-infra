@@ -43,7 +43,7 @@ sudo systemctl enable containerd.service
 4. **Copiar la clave SSH pública**:
    Ejecute el siguiente comando para visualizar y copiar el contenido de la clave SSH pública. Esto será necesario para integraciones posteriores:
    ```bash
-   cat ~/.ssh/id_ed25519.pub
+   cat ~/.ssh/id_ed25519
    ```
 
 ### Configuración para crear el token de Github Packages
