@@ -1,6 +1,6 @@
 services:
   front:
-    image: ghcr.io/../node
+    image: ghcr.io/samuelloza/citc2024-taller-front:develop
     labels:
         - traefik.enable=true
         - traefik.http.routers.front-dev.rule=Host(`MY-DOMAIN.COM`)
